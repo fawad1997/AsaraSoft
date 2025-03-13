@@ -3,39 +3,39 @@ import { Linkedin, Github, Mail } from 'lucide-react';
 
 const teamMembers = [
   {
-    name: 'Sarah Chen',
-    role: 'Chief Technology Officer',
-    bio: 'With over 15 years of experience in AI and machine learning, Sarah leads our technical innovation and strategic development.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400',
-    funFact: 'Competitive chess player',
-    social: {
-      linkedin: '#',
-      github: '#',
-      email: 'sarah@asarasoft.com'
-    }
-  },
-  {
-    name: 'Marcus Rodriguez',
-    role: 'Lead Web Developer',
-    bio: 'Marcus brings creativity and technical expertise to every project, specializing in scalable web applications.',
+    name: 'Asad Choudhry',
+    role: 'Chief Executive Officer',
+    bio: 'Leading the strategic vision and growth of AsaraSoft with a focus on innovation and customer success.',
     image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=400&h=400',
-    funFact: 'Amateur astronomer',
+    funFact: 'Tech enthusiast',
     social: {
       linkedin: '#',
       github: '#',
-      email: 'marcus@asarasoft.com'
+      email: 'achoudhry@asarasoft.com'
     }
   },
   {
-    name: 'Aisha Patel',
-    role: 'AI Research Director',
-    bio: 'Dr. Patel leads our AI research initiatives, focusing on developing innovative solutions for complex business challenges.',
+    name: 'Fawad Bin Tariq',
+    role: 'Chief Technology Officer',
+    bio: 'With over 6 years of experience in AI and web development, Fawad leads our technical innovation and strategic development.',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400',
+    funFact: 'Full Stack Web Developer & AI Engineer',
+    social: {
+      linkedin: 'https://www.linkedin.com/in/fawadbintariq/',
+      github: 'https://github.com/fawad1997',
+      email: 'fawad@asarasoft.com'
+    }
+  },
+  {
+    name: 'Ziad',
+    role: 'Lead Marketing',
+    bio: 'Driving brand awareness and growth strategies with innovative marketing approaches.',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=400&h=400',
-    funFact: 'Published author',
+    funFact: 'Marketing strategist',
     social: {
       linkedin: '#',
       github: '#',
-      email: 'aisha@asarasoft.com'
+      email: 'ziad@asarasoft.com'
     }
   }
 ];

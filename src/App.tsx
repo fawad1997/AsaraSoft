@@ -21,7 +21,6 @@ function App() {
         <Team />
         <Portfolio />
         <Testimonials />
-        <Blog />
         <FAQ />
         <Contact />
       </main>

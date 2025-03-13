@@ -70,7 +70,7 @@ export default function Contact() {
               <div>
                 <h3 className="text-lg font-medium text-gray-900">Phone</h3>
                 <a href="tel:+1234567890" className="text-gray-600 hover:text-indigo-600">
-                  +1 (234) 567-890
+                +1 (209) 277-3609
                 </a>
               </div>
             </div>
