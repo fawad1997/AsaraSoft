@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    user_name: '',
+    user_email: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -22,18 +25,31 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      
-      // Reset after showing success
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({ name: '', email: '', message: '' });
-      }, 3000);
-    }, 1500);
+    // Replace these with your actual EmailJS service ID, template ID, and public key
+    const serviceId = 'service_dgsm2wr';
+    const templateId = 'template_4kpqs86';
+    const publicKey = 'kuINIIMIeHCOKt8Lj';
+    
+    // Send the email using EmailJS
+    emailjs.sendForm(serviceId, templateId, formRef.current!, publicKey)
+      .then((result) => {
+        console.log('Email sent successfully:', result.text);
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        
+        // Reset after showing success
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({ user_name: '', user_email: '', message: '' });
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+        setIsSubmitting(false);
+        setError('Failed to send email. Please try again later.');
+      });
   };
 
   const containerVariants = {
@@ -148,13 +164,14 @@ export default function Contact() {
                 <p className="text-gray-600 text-center">Your message has been sent successfully. We'll get back to you soon.</p>
               </motion.div>
             ) : (
-              <form className="space-y-6" onSubmit={handleSubmit}>
+              <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
                 <motion.div variants={itemVariants}>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                  <label htmlFor="user_name" className="block text-sm font-medium text-gray-700">Name</label>
                   <div className="mt-1 relative rounded-md shadow-sm">
                     <input
                       type="text"
-                      id="name"
+                      id="user_name"
+                      name="user_name"
                       value={formData.name}
                       onChange={handleChange}
                       required
@@ -165,11 +182,12 @@ export default function Contact() {
                 </motion.div>
                 
                 <motion.div variants={itemVariants}>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                  <label htmlFor="user_email" className="block text-sm font-medium text-gray-700">Email</label>
                   <div className="mt-1 relative rounded-md shadow-sm">
                     <input
                       type="email"
-                      id="email"
+                      id="user_email"
+                      name="user_email"
                       value={formData.email}
                       onChange={handleChange}
                       required
@@ -184,6 +202,7 @@ export default function Contact() {
                   <div className="mt-1">
                     <textarea
                       id="message"
+                      name="message"
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
@@ -193,6 +212,16 @@ export default function Contact() {
                     ></textarea>
                   </div>
                 </motion.div>
+
+                {error && (
+                  <motion.div 
+                    className="bg-red-50 text-red-700 p-3 rounded-md"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {error}
+                  </motion.div>
+                )}
                 
                 <motion.button
                   type="submit"
